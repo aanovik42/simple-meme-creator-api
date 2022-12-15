@@ -47,6 +47,7 @@ public class MemeTemplateController {
                 .collect(Collectors.toList());
 
         return CollectionModel.of(responseModel,
+                linkTo(methodOn(MemeTemplateController.class).getMemeTemplate(null)).withRel("find"),
                 linkTo(methodOn(MemeTemplateController.class).getAllMemeTemplates()).withSelfRel());
     }
 

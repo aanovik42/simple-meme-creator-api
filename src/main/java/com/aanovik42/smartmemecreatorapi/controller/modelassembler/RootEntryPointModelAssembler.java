@@ -6,9 +6,9 @@ import com.aanovik42.smartmemecreatorapi.controller.dto.RootEntryPointResponseDt
 import lombok.SneakyThrows;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.server.RepresentationModelAssembler;
-import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.stereotype.Component;
 
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 
@@ -20,7 +20,8 @@ public class RootEntryPointModelAssembler implements
     public EntityModel<RootEntryPointResponseDto> toModel(RootEntryPointResponseDto rootEntryPointResponseDto) {
 
         return EntityModel.of(rootEntryPointResponseDto,
-                WebMvcLinkBuilder.linkTo(methodOn(MemeTemplateController.class).getMemeTemplate(null)).withRel("templates"),
-                WebMvcLinkBuilder.linkTo(methodOn(MemeController.class).createMeme(null)).withRel("memes"));
+
+                linkTo(methodOn(MemeTemplateController.class).getAllMemeTemplates()).withRel("templates"),
+                linkTo(methodOn(MemeController.class).createMeme(null)).withRel("memes"));
     }
 }
